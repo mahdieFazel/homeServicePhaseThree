@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-class SubService extends BaseEntity<Long> {
+public class SubService extends BaseEntity<Long> {
     @Column(unique = true)
     private String name;
     private Long basePrice;
