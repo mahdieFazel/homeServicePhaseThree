@@ -1,6 +1,6 @@
 package com.example.homeservicephasethree.entity;
 
-import com.example.homeservicephasethree.entity.base.BaseEntity;
+import com.example.homeservicephasethree.base.BaseEntity;
 import com.example.homeservicephasethree.enumeration.PaymentWay;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Transaction extends BaseEntity {
+public class Transaction extends BaseEntity<Long> {
     @Enumerated(EnumType.STRING)
     private PaymentWay paymentWay;
 
