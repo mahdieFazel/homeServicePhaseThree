@@ -1,8 +1,7 @@
 package com.example.homeservicephasethree.entity;
 
-import com.example.homeservicephasethree.entity.base.BaseEntity;
+import com.example.homeservicephasethree.base.BaseEntity;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.*;
@@ -14,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Comment extends BaseEntity {
+public class Comment extends BaseEntity<Long> {
     Double score;
     String description;
 

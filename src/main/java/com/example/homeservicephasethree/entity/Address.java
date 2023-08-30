@@ -1,6 +1,6 @@
 package com.example.homeservicephasethree.entity;
 
-import com.example.homeservicephasethree.entity.base.BaseEntity;
+import com.example.homeservicephasethree.base.BaseEntity;
 import jakarta.persistence.Entity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -13,11 +13,12 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Address extends BaseEntity {
+public class Address extends BaseEntity<Long> {
     String city;
     String Street;
     String postalCode;
     String zone;
+    String houseNumber;
 
 
 }

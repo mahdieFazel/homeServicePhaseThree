@@ -1,6 +1,6 @@
 package com.example.homeservicephasethree.entity;
 
-import com.example.homeservicephasethree.entity.base.BaseEntity;
+import com.example.homeservicephasethree.base.BaseEntity;
 import com.example.homeservicephasethree.enumeration.OfferState;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Offer extends BaseEntity {
+public class Offer extends BaseEntity<Long> {
     @ManyToOne
     private Expert expert;
     @CreationTimestamp

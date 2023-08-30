@@ -1,6 +1,6 @@
 package com.example.homeservicephasethree.entity;
 
-import com.example.homeservicephasethree.entity.base.BaseEntity;
+import com.example.homeservicephasethree.base.BaseEntity;
 import com.example.homeservicephasethree.enumeration.PersonStatus;
 import com.example.homeservicephasethree.enumeration.Role;
 import jakarta.persistence.*;
@@ -17,7 +17,7 @@ import java.util.Date;
 @Setter
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Person extends BaseEntity {
+public class Person extends BaseEntity<Long>  {
     String firstName;
     String lastName;
     @Column(unique = true)

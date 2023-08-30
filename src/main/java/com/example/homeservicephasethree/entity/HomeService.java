@@ -1,6 +1,6 @@
 package com.example.homeservicephasethree.entity;
 
-import com.example.homeservicephasethree.entity.base.BaseEntity;
+import com.example.homeservicephasethree.base.BaseEntity;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 
-public class HomeService extends BaseEntity {
+public class HomeService extends BaseEntity<Long> {
     @Column(unique = true)
     private String name;
 

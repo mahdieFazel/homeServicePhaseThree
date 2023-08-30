@@ -1,6 +1,6 @@
 package com.example.homeservicephasethree.entity;
 
-import com.example.homeservicephasethree.entity.base.BaseEntity;
+import com.example.homeservicephasethree.base.BaseEntity;
 import com.example.homeservicephasethree.enumeration.OrderState;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order extends BaseEntity {
+public class Order extends BaseEntity<Long> {
     @ManyToOne
     @JoinColumn(nullable = false)
     private SubService subService;
