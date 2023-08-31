@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -18,6 +19,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Offer extends BaseEntity<Long> {
     private Boolean isAccept;
+    private LocalDateTime endTime;
     @ManyToOne
     private Expert expert;
     @CreationTimestamp

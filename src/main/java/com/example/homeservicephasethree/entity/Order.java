@@ -8,7 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -41,4 +43,6 @@ public class Order extends BaseEntity<Long> {
     private Set<Offer> offers = new HashSet<>();
     @ManyToOne
     private Expert expert;
+    @UpdateTimestamp
+    private LocalDateTime updateTime;
 }

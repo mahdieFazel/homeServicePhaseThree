@@ -6,9 +6,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Data
@@ -21,10 +19,13 @@ public class Expert extends Person{
     @Lob
     @Column(columnDefinition = "BLOB" , length = 300)
      byte[] photo;
-    Long score;
+    Integer score;
+    @ManyToMany(mappedBy = "experts", cascade = CascadeType.ALL)
+    private Set<SubService> subServices = new HashSet<>();
+    @OneToMany(mappedBy = "expert")
+    private List<Offer> offers = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<SubService> subServices = new ArrayList<>();
+
 
     @Override
     public String toString() {
@@ -35,4 +36,9 @@ public class Expert extends Person{
     }
     @Enumerated(value = EnumType.STRING)
     private PersonStatus personStatus;
+
+    public void addSubService(SubService subService) {
+        this.subServices.add(subService);
+        subService.getExperts().add(this);
+    }
 }
