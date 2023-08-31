@@ -39,6 +39,12 @@ public interface ExpertRepository extends JpaRepository<Expert, Long> {
             where e.id = :expertId
             """)
     int updateScore(Long expertId, Integer newScore);
+    @Query("""
+            update Expert e
+            set e.credit = :newCredit
+            where e.id = :expertId
+            """)
+    int updateCredit(Long expertId, Long newCredit);
 
 
 
