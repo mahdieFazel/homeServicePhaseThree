@@ -1,13 +1,14 @@
 package com.example.homeservicephasethree.entity;
 
 import com.example.homeservicephasethree.base.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -22,4 +23,6 @@ public class SubService extends BaseEntity<Long> {
 
     @ManyToOne
     private HomeService homeService;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Expert> experts = new HashSet<>();
 }
