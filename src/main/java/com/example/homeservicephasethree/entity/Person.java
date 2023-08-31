@@ -18,6 +18,7 @@ import java.util.Date;
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Person extends BaseEntity<Long>  {
+    private Boolean isActive;
     String firstName;
     String lastName;
     @Column(unique = true)
