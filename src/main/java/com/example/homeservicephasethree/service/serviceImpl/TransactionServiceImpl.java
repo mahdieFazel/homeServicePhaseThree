@@ -1,4 +1,6 @@
 package com.example.homeservicephasethree.service.serviceImpl;
 
-public interface TransactionServiceImpl {
+import com.example.homeservicephasethree.service.TransactionService;
+
+public class TransactionServiceImpl implements TransactionService {
 }
