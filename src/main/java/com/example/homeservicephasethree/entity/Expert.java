@@ -1,11 +1,10 @@
 package com.example.homeservicephasethree.entity;
 
+import com.example.homeservicephasethree.enumeration.PersonStatus;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,11 +15,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Getter
+@Setter
 public class Expert extends Person{
     @Lob
     @Column(columnDefinition = "BLOB" , length = 300)
      byte[] photo;
-    Double score;
+    Long score;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<SubService> subServices = new ArrayList<>();
@@ -32,4 +33,6 @@ public class Expert extends Person{
                 ", score=" + score +
                 '}';
     }
+    @Enumerated(value = EnumType.STRING)
+    private PersonStatus personStatus;
 }
