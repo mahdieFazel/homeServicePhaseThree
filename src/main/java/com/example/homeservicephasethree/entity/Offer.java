@@ -17,6 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Offer extends BaseEntity<Long> {
+    private Boolean isAccept;
     @ManyToOne
     private Expert expert;
     @CreationTimestamp
