@@ -14,5 +14,10 @@ public interface SubServiceRepository extends JpaRepository<SubService, Long> {
     Optional<SubService> findByName(String name);
 
     int deleteSubServiceById(Long subServiceId);
-
+    @Query("""
+            update SubService ss
+            set ss.basePrice = :basePrice, ss.description = :description
+            where ss.id = :subServiceId
+            """)
+    int editBasePriceAndDescription(Long subServiceId, Long basePrice, String description);
 }

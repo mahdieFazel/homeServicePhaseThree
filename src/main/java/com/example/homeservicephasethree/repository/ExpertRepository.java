@@ -33,6 +33,13 @@ public interface ExpertRepository extends JpaRepository<Expert, Long> {
             where e.id = :expertId
             """)
     int changeExpertActivation(Long expertId, Boolean isActive);
+    @Query("""
+            update Expert e
+            set e.score = :newScore
+            where e.id = :expertId
+            """)
+    int updateScore(Long expertId, Integer newScore);
+
 
 
 }
