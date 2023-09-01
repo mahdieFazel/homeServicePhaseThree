@@ -38,7 +38,7 @@ public class Order extends BaseEntity<Long> {
     @JoinColumn(nullable = false)
     private Customer customer;
     @Enumerated(EnumType.STRING)
-    private OrderState orderStatus;
+    private OrderState orderState;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "order", fetch = FetchType.EAGER)
     private Set<Offer> offers = new HashSet<>();
     @ManyToOne
