@@ -13,7 +13,6 @@ import com.example.homeservicephasethree.service.ExpertService;
 import com.example.homeservicephasethree.service.OfferService;
 import com.example.homeservicephasethree.service.OrderService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +102,7 @@ public class ExpertServiceImpl
         if (order.get().getSubService().getBasePrice() > offer.getProposedPrice())
             throw new PriceException("the proposed-price should not be lower than the base-price!");
         if (!order.get().getOrderStatus().equals(OrderState.WAITING_EXPERT_SUGGESTION))
-            throw new OrderStatusException("the status of this order not \"WAITING FOR EXPERT SUGGESTION\"!");
+            throw new OrderStateException("the status of this order not \"WAITING FOR EXPERT SUGGESTION\"!");
 
         offer.setIsAccept(false);
         offer.setExpert(expert.get());

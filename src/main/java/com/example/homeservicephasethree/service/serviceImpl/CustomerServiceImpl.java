@@ -9,7 +9,6 @@ import com.example.homeservicephasethree.service.*;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -67,7 +66,7 @@ public class CustomerServiceImpl
         if (order.isEmpty())
             throw new OrderNotFoundException("this order does not exist!");
         if (!order.get().getOrderStatus().equals(OrderState.STARTED))
-            throw new OrderStatusException("the status of this order is not yet \"STARTED\"!");
+            throw new OrderStateException("the status of this order is not yet \"STARTED\"!");
         return orderService.changeOrderStatus(orderId, OrderState.STARTED, OrderStatus.DONE);
     }
 
@@ -77,7 +76,7 @@ public class CustomerServiceImpl
         if (order.isEmpty())
             throw new OrderNotFoundException("this order does not exist!");
         if (!order.get().getOrderStatus().equals(OrderState.DONE))
-            throw new OrderStatusException("the status of this order is not yet \"DONE\"!");
+            throw new OrderStateException("the status of this order is not yet \"DONE\"!");
         Optional<Customer> customer = findById(customerId);
         if (customer.isEmpty())
             throw new CustomerNotFoundException("this customer does not exit!");
@@ -96,7 +95,7 @@ public class CustomerServiceImpl
         if (order.isEmpty())
             throw new OrderNotFoundException("this order does not exist!");
         if (!order.get().getOrderStatus().equals(OrderState.WAITING_FOR_EXPERT_TO_COME))
-            throw new OrderStatusException("the status of this order is not yet \"WAITING FOR EXPERT TO COME\"!");
+            throw new OrderStateException("the status of this order is not yet \"WAITING FOR EXPERT TO COME\"!");
         return orderService.changeOrderStatus(orderId, OrderState.WAITING_FOR_EXPERT_TO_COME, OrderState.STARTED);
     }
 

@@ -52,8 +52,8 @@ public class AdminServiceImpl
 
     @Override
     public void addSubService(SubService subService, Long homeServiceId) {
-        Optional<HomeService> mainService = homeServiceService.findById(homeServiceId);
-        if (mainService.isEmpty())
+        Optional<HomeService> homeService = homeServiceService.findById(homeServiceId);
+        if (homeService.isEmpty())
             throw new HomeServiceNotFoundException("this  service dose not exist!");
         if (subServiceService.findByName(subService.getName()).isPresent())
             throw new DuplicateSubServiceException("this subService already exist!");
@@ -92,10 +92,10 @@ public class AdminServiceImpl
     }
 
     @Override
-    public int changeExpertState(Long expertId, PersonStatus expertStatus) {
+    public int changeExpertState(Long expertId, PersonStatus personStatus) {
         if (expertService.findById(expertId).isEmpty())
             throw new ExpertNotFoundException("this expert does not exist!");
-        return expertService.changeExpertStatus(expertId, expertStatus);
+        return expertService.changeExpertStatus(expertId, personStatus);
     }
     @Override
     public boolean checkExpertDelayForDoingWork(Long offerId) {
@@ -103,8 +103,8 @@ public class AdminServiceImpl
         if (offer.isEmpty())
             throw new OfferNotFoundException("there is no offers!");
         Order order = offer.get().getOrder();
-        if (!order.getOrderStatus().equals(OrderState.PAID))
-            throw new OrderStatusException("the status of this order is not yet \"PAID\"!");
+        if (!order.getOrderState().equals(OrderState.PAID))
+            throw new OrderStateException("the state of this order is not yet \"PAID\"!");
         Optional<Expert> expert = expertService.findById(offer.get().getExpert().getId());
         if (expert.isEmpty())
             throw new ExpertNotFoundException("this expert does not exist!");
