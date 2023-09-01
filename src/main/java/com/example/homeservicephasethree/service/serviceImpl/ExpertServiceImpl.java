@@ -101,7 +101,7 @@ public class ExpertServiceImpl
             throw new UnRelatedExpertSubServiceException("this expert is not related to this sub-service!");
         if (order.get().getSubService().getBasePrice() > offer.getProposedPrice())
             throw new PriceException("the proposed-price should not be lower than the base-price!");
-        if (!order.get().getOrderStatus().equals(OrderState.WAITING_EXPERT_SUGGESTION))
+        if (!order.get().getOrderState().equals(OrderState.WAITING_EXPERT_SUGGESTION))
             throw new OrderStateException("the status of this order not \"WAITING FOR EXPERT SUGGESTION\"!");
 
         offer.setIsAccept(false);
