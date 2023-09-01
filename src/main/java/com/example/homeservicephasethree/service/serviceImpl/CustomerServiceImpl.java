@@ -29,13 +29,14 @@ public class CustomerServiceImpl
                                OrderService orderService,
                                OfferService offerService,
                                ExpertService expertService,
-                               EntityManager entityManager) {
+                               CommentService commentService, EntityManager entityManager) {
         super(repository);
         this.homeServiceService = homeServiceService;
         this.subServiceService = subServiceService;
         this.orderService = orderService;
         this.offerService = offerService;
         this.expertService = expertService;
+        this.commentService = commentService;
         this.entityManager = entityManager;
     }
 
@@ -65,9 +66,9 @@ public class CustomerServiceImpl
         Optional<Order> order = orderService.findById(orderId);
         if (order.isEmpty())
             throw new OrderNotFoundException("this order does not exist!");
-        if (!order.get().getOrderStatus().equals(OrderState.STARTED))
+        if (!order.get().getOrderState().equals(OrderState.STARTED))
             throw new OrderStateException("the status of this order is not yet \"STARTED\"!");
-        return orderService.changeOrderStatus(orderId, OrderState.STARTED, OrderStatus.DONE);
+        return orderService.changeOrderStatus(orderId, OrderState.STARTED, OrderState.DONE);
     }
 
     @Override
@@ -75,7 +76,7 @@ public class CustomerServiceImpl
         Optional<Order> order = orderService.findById(orderId);
         if (order.isEmpty())
             throw new OrderNotFoundException("this order does not exist!");
-        if (!order.get().getOrderStatus().equals(OrderState.DONE))
+        if (!order.get().getOrderState().equals(OrderState.DONE))
             throw new OrderStateException("the status of this order is not yet \"DONE\"!");
         Optional<Customer> customer = findById(customerId);
         if (customer.isEmpty())
@@ -94,7 +95,7 @@ public class CustomerServiceImpl
         Optional<Order> order = orderService.findById(orderId);
         if (order.isEmpty())
             throw new OrderNotFoundException("this order does not exist!");
-        if (!order.get().getOrderStatus().equals(OrderState.WAITING_FOR_EXPERT_TO_COME))
+        if (!order.get().getOrderState().equals(OrderState.WAITING_FOR_EXPERT_TO_COME))
             throw new OrderStateException("the status of this order is not yet \"WAITING FOR EXPERT TO COME\"!");
         return orderService.changeOrderStatus(orderId, OrderState.WAITING_FOR_EXPERT_TO_COME, OrderState.STARTED);
     }
@@ -107,7 +108,7 @@ public class CustomerServiceImpl
         Optional<SubService> subService = subServiceService.findById(subServiceId);
         if (subService.isEmpty())
             throw new SubServiceNotFoundException("this sub-service dose not exist!");
-        order.setOrderStatus(OrderState.WAITING_EXPERT_SUGGESTION);
+        order.setOrderState(OrderState.WAITING_EXPERT_SUGGESTION);
         order.setCustomer(customer.get());
         order.setSubService(subService.get());
         orderService.saveOrUpdate(order);
