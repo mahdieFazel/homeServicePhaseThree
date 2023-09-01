@@ -22,7 +22,7 @@ public interface ExpertRepository extends JpaRepository<Expert, Long> {
     int editPassword(Long expertId, String newPassword);
     @Query("""
             update Expert e
-            set e.personStatus = :expertStatus
+            set e.personStatus = :personStatus
             where e.id = :expertId
             """)
     int changeExpertStatus(Long expertId, PersonStatus personStatus);
