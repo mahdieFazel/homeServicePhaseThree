@@ -16,13 +16,13 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query("""
             from Order o
             where o.subService.id = :subServiceId
-            and (o.orderStatus = :orderStatusOne or o.orderStatus = :orderStatusTwo)
+            and (o.orderState = :orderStatusOne or o.orderState = :orderStatusTwo)
             """)
     List<Order> findBySubServiceIdAndOrderStatus(Long subServiceId, OrderState orderStateOne, OrderState orderStateTwo);
     @Query("""
             update Order o
-            set o.orderStatus = :newOrderStatus
-            where o.id = :orderId and o.orderStatus = :orderStatus
+            set o.orderState = :newOrderStatus
+            where o.id = :orderId and o.orderState = :orderStatus
             """)
     int changeOrderStatus(Long orderId, OrderState orderState, OrderState newOrderState);
 
