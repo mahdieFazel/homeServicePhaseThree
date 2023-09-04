@@ -1,6 +1,7 @@
 package com.example.homeservicephasethree.service;
 
-import com.example.homeservicephasethree.service.serviceImpl.AddressServiceImpl;
+import com.example.homeservicephasethree.base.BaseService;
+import com.example.homeservicephasethree.entity.Address;
 
-public class AddressService implements AddressServiceImpl {
+public interface AddressService extends BaseService<Address, Long> {
 }
